@@ -7,15 +7,15 @@ import {styles} from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 
 const Header = observer(
-  ({hamburgerIcon, toggleDrawer, logo, cartIcon, cartNavigation, mapIcon}) => {
+  ({drawerIcon, toggleDrawerIcon, logo, cartIcon, toggleCartIcon, mapIcon}) => {
     return (
       <View style={styles.headerStyle}>
-        {hamburgerIcon ? (
+        {drawerIcon ? (
           <Icon
             name="menu"
             size={26}
             style={{color: 'white'}}
-            onPress={toggleDrawer}
+            onPress={toggleDrawerIcon}
           />
         ) : null}
 
@@ -35,7 +35,7 @@ const Header = observer(
             name="shopping-cart"
             size={26}
             style={{color: 'white'}}
-            onPress={cartNavigation}
+            onPress={toggleCartIcon}
           />
         ) : null}
       </View>

@@ -7,9 +7,8 @@ import {styles} from './styles';
 import {colors} from '../../constants/colors';
 
 const CardItem = observer(({item}) => {
-  console.log('colors->', colors.secondary);
   return (
-    <View>
+    <View style={{backgroundColor: 'white'}}>
       <Box
         bg="#F2EFEA"
         m={2}
@@ -28,15 +27,16 @@ const CardItem = observer(({item}) => {
           maxWidth="100%"
           h="122px"
         />
-        <View style={{padding: 5}}>
-          <Text>{item.name}</Text>
-          <Text>{item.calorieCount}</Text>
-          <Text>${item.price}</Text>
+        <View style={{padding: 10}}>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.calorieCount}>{item.calorieCount}</Text>
+          <Text style={styles.price}>${item.price}</Text>
 
           <Button
             bg={colors.secondary}
-            mx={2}
-            mt={10}
+            mt={3}
+            p={0}
+            h={36}
             _pressed={{
               bg: 'white',
               _text: {
@@ -46,7 +46,7 @@ const CardItem = observer(({item}) => {
             onPress={() => {
               cartStore.addToCart(item);
             }}>
-            add
+            ADD
           </Button>
         </View>
       </Box>

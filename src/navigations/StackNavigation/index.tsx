@@ -10,10 +10,10 @@ const Stack = createNativeStackNavigator();
 
 export default function MainStackNavigator() {
   const navigation = useNavigation();
-  const cartNaviagtion = () => {
+  const toggleCartIcon = () => {
     navigation.navigate('Cart');
   };
-  const toggleDrawer = () => {
+  const toggleDrawerIcon = () => {
     navigation.dispatch(DrawerActions.toggleDrawer());
   };
 
@@ -26,12 +26,12 @@ export default function MainStackNavigator() {
         options={{
           headerTitle: () => (
             <Header
-              hamburgerIcon={true}
-              toggleDrawer={toggleDrawer}
+              drawerIcon={true}
+              toggleDrawerIcon={toggleDrawerIcon}
               logo={true}
               mapIcon={true}
               cartIcon={true}
-              cartNavigation={cartNaviagtion}
+              toggleCartIcon={toggleCartIcon}
             />
           ),
         }}
@@ -42,7 +42,7 @@ export default function MainStackNavigator() {
         options={{
           headerTitle: () => (
             <Header
-              hamburgerIcon={false}
+              drawerIcon={false}
               logo={true}
               mapIcon={false}
               cartIcon={false}
