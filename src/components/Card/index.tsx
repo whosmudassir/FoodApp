@@ -2,12 +2,13 @@ import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {justifyContent} from 'styled-system';
 import CardItem from '../CardItem';
+import {styles} from './styles';
 
 export default function Card({main}) {
   console.log('main->', main);
   return (
     <View>
-      <Text> --{main.name}--</Text>
+      <Text style={styles.headingText}>{main.name}</Text>
       {main.items ? (
         <View>
           <FlatList

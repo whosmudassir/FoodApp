@@ -1,10 +1,13 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
-import {Box, Image, Flex} from 'native-base';
+import {View, Text} from 'react-native';
+import {Box, Image, Flex, Button} from 'native-base';
 import {cartStore} from '../../mobx/Store';
 import {observer} from 'mobx-react';
+import {styles} from './styles';
+import {colors} from '../../constants/colors';
 
 const CardItem = observer(({item}) => {
+  console.log('colors->', colors.secondary);
   return (
     <View>
       <Box
@@ -25,15 +28,27 @@ const CardItem = observer(({item}) => {
           maxWidth="100%"
           h="122px"
         />
-        <Text>{item.name}</Text>
-        <Text>{item.calorieCount}</Text>
-        <Text>${item.price}</Text>
-        <Button
-          onPress={() => {
-            cartStore.addToCart(item);
-          }}
-          title="add"
-        />
+        <View style={{padding: 5}}>
+          <Text>{item.name}</Text>
+          <Text>{item.calorieCount}</Text>
+          <Text>${item.price}</Text>
+
+          <Button
+            bg={colors.secondary}
+            mx={2}
+            mt={10}
+            _pressed={{
+              bg: 'white',
+              _text: {
+                color: 'black',
+              },
+            }}
+            onPress={() => {
+              cartStore.addToCart(item);
+            }}>
+            add
+          </Button>
+        </View>
       </Box>
     </View>
   );

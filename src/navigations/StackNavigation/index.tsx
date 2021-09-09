@@ -1,42 +1,55 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
 import Header from '../../components/Header';
 import Cart from '../../screens/Cart';
-import Menu from '../../screens/Menu';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigation from '../TabNavigation';
+import {screenStyles} from './styles';
+import {useNavigation, DrawerActions} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
-const screenStyles = {
-  headerStyle: {
-    backgroundColor: '#000',
-  },
-  headerTintColor: '#fff',
-  headerTitleStyle: {
-    fontWeight: 'bold',
-  },
-};
-
 export default function MainStackNavigator() {
+  const navigation = useNavigation();
+  const cartNaviagtion = () => {
+    navigation.navigate('Cart');
+  };
+  const toggleDrawer = () => {
+    navigation.dispatch(DrawerActions.toggleDrawer());
+  };
+
   return (
     <Stack.Navigator screenOptions={screenStyles}>
       <Stack.Screen
         name="Menu"
         component={TabNavigation}
         // options={{headerShown: false}}
-        options={{headerTitle: () => <Header />}}
+        options={{
+          headerTitle: () => (
+            <Header
+              hamburgerIcon={true}
+              toggleDrawer={toggleDrawer}
+              logo={true}
+              mapIcon={true}
+              cartIcon={true}
+              cartNavigation={cartNaviagtion}
+            />
+          ),
+        }}
       />
-      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen
+        name="Cart"
+        component={Cart}
+        options={{
+          headerTitle: () => (
+            <Header
+              hamburgerIcon={false}
+              logo={true}
+              mapIcon={false}
+              cartIcon={false}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 }
-
-// export default function CartNavigator() {
-//   return (
-//     <Stack.Navigator screenOptions={screenStyles}>
-//       <Stack.Screen name="Cart" component={Cart} />
-//     </Stack.Navigator>
-//   );
-// }
