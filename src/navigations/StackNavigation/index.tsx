@@ -45,7 +45,7 @@ export default function MainStackNavigator() {
               drawerIcon={false}
               logo={true}
               mapIcon={false}
-              cartIcon={false}
+              cartIcon={true}
             />
           ),
         }}

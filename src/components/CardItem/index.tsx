@@ -5,8 +5,10 @@ import {cartStore} from '../../mobx/Store';
 import {observer} from 'mobx-react';
 import {styles} from './styles';
 import {colors} from '../../constants/colors';
+import {ItemInterface} from '../../types/types';
 
-const CardItem = observer(({item}) => {
+const CardItem: React.FC<ItemInterface> = observer(({item}) => {
+  console.log('item-->', item);
   return (
     <View style={{backgroundColor: 'white'}}>
       <Box

@@ -3,6 +3,7 @@ import {View, Text, Image, Button} from 'react-native';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
 import {cartStore} from '../../mobx/Store';
 import {observer} from 'mobx-react';
+import {Circle} from 'native-base';
 import {styles} from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -31,12 +32,18 @@ const Header = observer(
         ) : null}
 
         {cartIcon ? (
-          <Icon
-            name="shopping-cart"
-            size={26}
-            style={{color: 'white'}}
-            onPress={toggleCartIcon}
-          />
+          <>
+            <Icon
+              name="shopping-cart"
+              size={26}
+              style={{color: 'white'}}
+              onPress={toggleCartIcon}
+            />
+            {/* {cartStore.cart.length} */}
+            <Circle size={5} bg="#dc2626">
+              <Text style={styles.cartSize}>{cartStore.cart.length}</Text>
+            </Circle>
+          </>
         ) : null}
       </View>
     );

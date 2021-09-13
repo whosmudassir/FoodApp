@@ -3,8 +3,9 @@ import {View, Text, FlatList} from 'react-native';
 import {justifyContent} from 'styled-system';
 import CardItem from '../CardItem';
 import {styles} from './styles';
+import {MainInterface} from '../../types/types';
 
-export default function Card({main}) {
+const Card: React.FC<MainInterface> = ({main}) => {
   console.log('main->', main);
   return (
     <View>
@@ -19,10 +20,9 @@ export default function Card({main}) {
         </View>
       ) : (
         <Text>
-          ***Categories
           {main.subCategories.map(category => (
             <>
-              <Text>||{category.name}||</Text>
+              <Text>{category.name}</Text>
               <View>
                 <FlatList
                   data={category.items}
@@ -36,4 +36,6 @@ export default function Card({main}) {
       )}
     </View>
   );
-}
+};
+
+export default Card;
