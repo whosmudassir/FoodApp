@@ -47,6 +47,7 @@ const Cart = observer(() => {
                         bg={colors.secondary}
                         w={100}
                         ml={220}
+                        size="sm"
                         mt={-45}
                         _pressed={{
                           bg: 'white',
