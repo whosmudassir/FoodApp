@@ -46,6 +46,7 @@ const Cart = observer(() => {
                         style={styles.removeButton}
                         bg={colors.secondary}
                         w={100}
+                        h={10}
                         ml={220}
                         size="sm"
                         mt={-45}
