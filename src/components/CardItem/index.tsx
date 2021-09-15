@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {Box, Image, Flex, Button} from 'native-base';
+import {Box, Image, Flex, HStack, Button} from 'native-base';
 import {cartStore} from '../../mobx/Store';
 import {observer} from 'mobx-react';
 import {styles} from './styles';
@@ -10,7 +10,7 @@ import {ItemInterface} from '../../types/types';
 const CardItem: React.FC<ItemInterface> = observer(({item}) => {
   console.log('item-->', item);
   return (
-    <View style={{backgroundColor: 'white'}}>
+    <View style={styles.container}>
       <Box
         bg="#F2EFEA"
         m={2}
@@ -34,22 +34,24 @@ const CardItem: React.FC<ItemInterface> = observer(({item}) => {
           <Text style={styles.calorieCount}>{item.calorieCount}</Text>
           <Text style={styles.price}>${item.price}</Text>
 
-          <Button
-            bg={colors.secondary}
-            mt={3}
-            p={0}
-            h={36}
-            _pressed={{
-              bg: 'white',
-              _text: {
-                color: 'black',
-              },
-            }}
-            onPress={() => {
-              cartStore.addToCart(item);
-            }}>
-            ADD
-          </Button>
+          <View>
+            <Button
+              bg={colors.secondary}
+              mt={3}
+              p={0}
+              h={36}
+              _pressed={{
+                bg: 'white',
+                _text: {
+                  color: 'black',
+                },
+              }}
+              onPress={() => {
+                cartStore.addToCart(item);
+              }}>
+              ADD
+            </Button>
+          </View>
         </View>
       </Box>
     </View>

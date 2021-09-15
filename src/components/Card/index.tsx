@@ -19,10 +19,10 @@ const Card: React.FC<MainInterface> = ({main}) => {
           />
         </View>
       ) : (
-        <Text>
+        <View>
           {main.subCategories.map(category => (
             <>
-              <Text>{category.name}</Text>
+              <Text style={styles.categoryText}>{category.name}</Text>
               <View>
                 <FlatList
                   data={category.items}
@@ -32,7 +32,7 @@ const Card: React.FC<MainInterface> = ({main}) => {
               </View>
             </>
           ))}
-        </Text>
+        </View>
       )}
     </View>
   );

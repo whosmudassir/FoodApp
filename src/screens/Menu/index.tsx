@@ -13,6 +13,7 @@ import Card from '../../components/Card';
 import Footer from '../../components/Footer';
 import {styles} from './styles';
 import CardItem from '../../components/CardItem';
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function Menu() {
   const [menu, setMenu] = useState(data.categories);
@@ -42,13 +43,15 @@ export default function Menu() {
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView>
-        <TextInput
-          style={styles.input}
-          placeholder="Steaks, Entress, Drinks etc."
-          value={searchText}
-          onChangeText={value => setSearchText(value)}
-        />
-
+        <View style={styles.inputContainer}>
+          <Icon name="search" size={26} style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Steaks, Entress, Drinks etc."
+            value={searchText}
+            onChangeText={value => setSearchText(value)}
+          />
+        </View>
         {searchText === '' ? (
           <FlatList data={menu} renderItem={({item}) => <Card main={item} />} />
         ) : (

@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  headerImageStyle: {width: vs(250), height: vs(34)},
+  headerImageStyle: {width: vs(250), height: vs(42)},
   cartSize: {
     color: 'white',
     fontWeight: 'bold',
