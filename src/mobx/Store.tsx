@@ -31,6 +31,7 @@ export class Store {
     this.cart.map(item => {
       if (item.id === id) {
         item.quantity = ++item.quantity;
+        item.price += item.price;
       }
     });
   }
