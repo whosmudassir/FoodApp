@@ -5,6 +5,7 @@ import {cartStore} from '../../mobx/Store';
 import {observer} from 'mobx-react';
 import {styles} from './styles';
 import {colors} from '../../constants/colors';
+import Icon from 'react-native-vector-icons/Feather';
 
 const Cart = observer(() => {
   const [total, setTotal] = useState();
@@ -15,6 +16,7 @@ const Cart = observer(() => {
   return (
     <View style={styles.cartContainer}>
       <SafeAreaView>
+        {console.log('cart-->', cartStore.cart)}
         {cartStore.cart.length ? (
           <View style={styles.subContainer}>
             <ScrollView>
@@ -42,6 +44,24 @@ const Cart = observer(() => {
                         h="52px"
                       />
                       <Text style={styles.price}>${item.price}</Text>
+                      <View style={styles.quantity}>
+                        <Icon
+                          name="minus-circle"
+                          size={22}
+                          onPress={() => {
+                            cartStore.itemDec(item.id);
+                          }}
+                        />
+                        <Text>{item.quantity}</Text>
+                        <Icon
+                          name="plus-circle"
+                          size={22}
+                          onPress={() => {
+                            cartStore.itemInc(item.id);
+                          }}
+                        />
+                      </View>
+
                       <Button
                         style={styles.removeButton}
                         bg={colors.secondary}

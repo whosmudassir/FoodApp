@@ -20,6 +20,13 @@ export const styles = StyleSheet.create({
     textAlign: 'right',
     padding: 10,
   },
+  quantity: {
+    display: 'flex',
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 20,
+    left: 180,
+  },
   name: {
     fontWeight: '600',
     fontSize: 15,
