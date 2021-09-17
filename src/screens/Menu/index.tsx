@@ -52,25 +52,27 @@ export default function Menu() {
             onChangeText={value => setSearchText(value)}
           />
         </View>
-        {searchText === '' ? (
-          <FlatList data={menu} renderItem={({item}) => <Card main={item} />} />
-        ) : (
-          food
-            .filter(item => {
-              if (item.name.toLowerCase().includes(searchText.toLowerCase())) {
-                console.log('this item->', item);
-                return item;
-              } else {
-                console.log('nothing');
-                return null;
-              }
+        {searchText === ''
+          ? menu.map(item => {
+              return <Card main={item} />;
             })
-            .map(item => {
-              console.log('map->', item);
+          : food
+              .filter(item => {
+                if (
+                  item.name.toLowerCase().includes(searchText.toLowerCase())
+                ) {
+                  console.log('this item->', item);
+                  return item;
+                } else {
+                  console.log('nothing');
+                  return null;
+                }
+              })
+              .map(item => {
+                console.log('map->', item);
 
-              return <CardItem item={item} />;
-            })
-        )}
+                return <CardItem item={item} />;
+              })}
 
         <Footer />
       </ScrollView>

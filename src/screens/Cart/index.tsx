@@ -14,73 +14,71 @@ const Cart = observer(() => {
         {console.log('cart-->', cartStore.cart)}
         {cartStore.cart.length ? (
           <View style={styles.subContainer}>
-            <ScrollView>
-              <FlatList
-                data={cartStore.cart}
-                renderItem={({item}) => (
-                  <View>
-                    <Box
-                      bg="#fff"
-                      my={2}
-                      p={5}
-                      rounded="8px"
-                      width="356px"
-                      height="135px">
-                      <Text style={styles.name}>{item.name}</Text>
-                      <Image
-                        style={styles.image}
-                        source={{
-                          uri: item.imageUrl,
-                        }}
-                        alt={item.name}
-                        size={'m'}
-                        w="96px"
-                        maxWidth="100%"
-                        h="52px"
-                      />
-                      <Text style={styles.price}>${item.price.toFixed(2)}</Text>
-                      <View style={styles.quantity}>
-                        <Icon
-                          name="minus-circle"
-                          size={22}
-                          onPress={() => {
-                            cartStore.itemDec(item.id, item.mainPrice);
-                          }}
-                        />
-                        <Text>{item.quantity}</Text>
-                        <Icon
-                          name="plus-circle"
-                          size={22}
-                          onPress={() => {
-                            cartStore.itemInc(item.id, item.mainPrice);
-                          }}
-                        />
-                      </View>
-
-                      <Button
-                        style={styles.removeButton}
-                        bg={colors.secondary}
-                        w={100}
-                        h={10}
-                        ml={220}
-                        size="sm"
-                        mt={-45}
-                        _pressed={{
-                          bg: 'white',
-                          _text: {
-                            color: 'black',
-                          },
-                        }}
+            <FlatList
+              data={cartStore.cart}
+              renderItem={({item}) => (
+                <View>
+                  <Box
+                    bg="#fff"
+                    my={2}
+                    p={5}
+                    rounded="8px"
+                    width="356px"
+                    height="135px">
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Image
+                      style={styles.image}
+                      source={{
+                        uri: item.imageUrl,
+                      }}
+                      alt={item.name}
+                      size={'m'}
+                      w="96px"
+                      maxWidth="100%"
+                      h="52px"
+                    />
+                    <Text style={styles.price}>${item.price.toFixed(2)}</Text>
+                    <View style={styles.quantity}>
+                      <Icon
+                        name="minus-circle"
+                        size={22}
                         onPress={() => {
-                          cartStore.deleteFromCart(item);
-                        }}>
-                        REMOVE
-                      </Button>
-                    </Box>
-                  </View>
-                )}
-              />
-            </ScrollView>
+                          cartStore.itemDec(item.id, item.mainPrice);
+                        }}
+                      />
+                      <Text>{item.quantity}</Text>
+                      <Icon
+                        name="plus-circle"
+                        size={22}
+                        onPress={() => {
+                          cartStore.itemInc(item.id, item.mainPrice);
+                        }}
+                      />
+                    </View>
+
+                    <Button
+                      style={styles.removeButton}
+                      bg={colors.secondary}
+                      w={100}
+                      h={10}
+                      ml={220}
+                      size="sm"
+                      mt={-45}
+                      _pressed={{
+                        bg: 'white',
+                        _text: {
+                          color: 'black',
+                        },
+                      }}
+                      onPress={() => {
+                        cartStore.deleteFromCart(item);
+                      }}>
+                      REMOVE
+                    </Button>
+                  </Box>
+                </View>
+              )}
+            />
 
             <View style={styles.totalContainer}>
               {/* <HStack safeAreaBottom> */}
