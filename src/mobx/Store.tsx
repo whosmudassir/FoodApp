@@ -1,4 +1,4 @@
-import {action, makeObservable, observable} from 'mobx';
+import {action, computed, makeObservable, observable} from 'mobx';
 
 export class Store {
   cart = [];
@@ -10,12 +10,14 @@ export class Store {
       deleteFromCart: action,
       itemInc: action,
       itemDec: action,
+      total: computed,
     });
   }
 
   addToCart(item) {
     item.quantity = 1;
     item.id = Math.random().toFixed(4);
+    item.mainPrice = item.price;
     this.cart.push(item);
   }
 
@@ -27,23 +29,28 @@ export class Store {
     console.log(this.cart);
   }
 
-  itemInc(id) {
+  itemInc(id, price) {
     this.cart.map(item => {
       if (item.id === id) {
         item.quantity = ++item.quantity;
-        item.price += item.price;
+        item.price = item.price + price;
       }
     });
   }
 
-  itemDec(id) {
+  itemDec(id, price) {
     this.cart.map(item => {
       if (item.id === id) {
         if (item.quantity > 1) {
           item.quantity = --item.quantity;
+          item.price = item.price - price;
         }
       }
     });
+  }
+
+  get total() {
+    return this.cart.reduce((acc, curr) => acc + Number(curr.price), 0);
   }
 }
 

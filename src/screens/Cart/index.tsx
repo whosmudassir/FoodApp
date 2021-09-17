@@ -8,11 +8,6 @@ import {colors} from '../../constants/colors';
 import Icon from 'react-native-vector-icons/Feather';
 
 const Cart = observer(() => {
-  const [total, setTotal] = useState();
-  useEffect(() => {
-    setTotal(cartStore.cart.reduce((acc, curr) => acc + Number(curr.price), 0));
-  }, [cartStore.cart]);
-
   return (
     <View style={styles.cartContainer}>
       <SafeAreaView>
@@ -43,13 +38,13 @@ const Cart = observer(() => {
                         maxWidth="100%"
                         h="52px"
                       />
-                      <Text style={styles.price}>${item.price}</Text>
+                      <Text style={styles.price}>${item.price.toFixed(2)}</Text>
                       <View style={styles.quantity}>
                         <Icon
                           name="minus-circle"
                           size={22}
                           onPress={() => {
-                            cartStore.itemDec(item.id);
+                            cartStore.itemDec(item.id, item.mainPrice);
                           }}
                         />
                         <Text>{item.quantity}</Text>
@@ -57,7 +52,7 @@ const Cart = observer(() => {
                           name="plus-circle"
                           size={22}
                           onPress={() => {
-                            cartStore.itemInc(item.id);
+                            cartStore.itemInc(item.id, item.mainPrice);
                           }}
                         />
                       </View>
@@ -89,7 +84,9 @@ const Cart = observer(() => {
 
             <View style={styles.totalContainer}>
               {/* <HStack safeAreaBottom> */}
-              <Text style={styles.grandTotal}>Total : ${total}</Text>
+              <Text style={styles.grandTotal}>
+                Total : ${cartStore.total.toFixed(2)}
+              </Text>
               <Button
                 bg={colors.secondary}
                 _pressed={{

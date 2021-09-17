@@ -15,35 +15,30 @@ const Header = observer(
           <Icon
             name="menu"
             size={26}
-            style={{color: 'white'}}
+            style={styles.drawerIcon}
             onPress={toggleDrawerIcon}
           />
         ) : null}
 
-        {logo ? (
-          <Image
-            style={styles.headerImageStyle}
-            source={require('../../assests/images/logo.png')}
-          />
-        ) : null}
+        {logo ? <Text style={styles.logo}>Food App</Text> : null}
 
         {mapIcon ? (
-          <Icon name="map-pin" size={26} style={{color: 'white'}} />
+          <Icon name="map-pin" size={26} style={styles.mapIcon} />
         ) : null}
 
         {cartIcon ? (
-          <>
+          <View style={styles.cartIconContainer}>
             <Icon
+              style={styles.cartIcon}
               name="shopping-cart"
               size={26}
-              style={{color: 'white'}}
               onPress={toggleCartIcon}
             />
             {/* {cartStore.cart.length} */}
             <Circle size={5} bg="#dc2626">
               <Text style={styles.cartSize}>{cartStore.cart.length}</Text>
             </Circle>
-          </>
+          </View>
         ) : null}
       </View>
     );
